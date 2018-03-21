@@ -66,6 +66,7 @@ extension ColorViewController {
                 self?.greenSlider.sendActions(for: .valueChanged)
                 self?.blueSlider.rx.value.onNext(Float(blue)/255.0)
                 self?.blueSlider.sendActions(for: .valueChanged)
+                self?.view.endEditing(true)
             }).disposed(by: disposeBag)
     }
 }
