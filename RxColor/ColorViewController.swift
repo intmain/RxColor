@@ -18,6 +18,9 @@ class ColorViewController: UIViewController {
     @IBOutlet weak var blueSlider: UISlider!
     @IBOutlet weak var hexColorTextField: UITextField!
     @IBOutlet weak var applyButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var loadButton: UIButton!
+    @IBOutlet weak var savedColorView: UIView!
     
     var disposeBag: DisposeBag = DisposeBag()
     
@@ -43,17 +46,12 @@ extension ColorViewController {
         
         color
             .map { (color: UIColor) -> String in
-                var red: CGFloat = 0
-                var green: CGFloat = 0
-                var blue: CGFloat = 0
-                var alpha: CGFloat = 0
-                color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-                return String(format: "%.2X%.2X%.2X" , Int(255*red), Int(255*green) ,Int(255*blue))
+                color.hexString
             }.subscribe(onNext: { [weak self] (colorString: String) in
                 self?.hexColorTextField.text = colorString
             }).disposed(by: disposeBag)
         
-        applyButton.rx.tap.asObservable().withLatestFrom(self.hexColorTextField.rx.text)
+        applyButton.rx.tap.asObservable().withLatestFrom(self.hexColorTextField.rx.text).debug("apply")
             .map { (hexText: String?) -> (Int, Int, Int)? in
                 return hexText?.rgb
             }.filter { rgb -> Bool in
@@ -68,6 +66,36 @@ extension ColorViewController {
                 self?.blueSlider.sendActions(for: .valueChanged)
                 self?.view.endEditing(true)
             }).disposed(by: disposeBag)
+        
+        saveButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                guard let `self` = self else { return }
+                guard let color = self.colorView.backgroundColor else { return }
+                ColorArchiveAPI.instance.save(color: color).subscribe(onNext: { (saveColor: UIColor) in
+                    self.savedColorView.backgroundColor = saveColor
+                }).disposed(by: self.disposeBag)
+            }).disposed(by: disposeBag)
+        
+        loadButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                guard let `self` = self else { return }
+                ColorArchiveAPI.instance.load().debug("load").subscribe(onNext: { (savedColor) in
+                    self.hexColorTextField.rx.text.onNext(savedColor.hexString)
+                    self.hexColorTextField.sendActions(for: .valueChanged)
+                    self.applyButton.sendActions(for: .touchUpInside)
+                }).disposed(by: self.disposeBag)
+            }).disposed(by: disposeBag)
+    }
+}
+
+extension UIColor {
+    var hexString: String {
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+        self.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        return String(format: "%.2X%.2X%.2X" , Int(255*red), Int(255*green) ,Int(255*blue))
     }
 }
 
@@ -78,5 +106,22 @@ extension String {
         let green = (number & 0x00ff00) >> 8
         let red = (number & 0xff0000) >> 16
         return (red, green, blue)
+    }
+}
+
+class ColorArchiveAPI {
+    static let instance: ColorArchiveAPI = ColorArchiveAPI()
+    var color: UIColor? = nil
+    
+    func save(color: UIColor) -> Observable<UIColor> {
+        self.color = color
+        return Observable.just(color).delay(0.7, scheduler: MainScheduler.instance)
+    }
+    
+    func load() -> Observable<UIColor> {
+        guard let color = color else {
+            return Observable.empty().delay(0.7, scheduler: MainScheduler.instance)
+        }
+        return Observable.just(color).delay(0.7, scheduler: MainScheduler.instance)
     }
 }

@@ -28,37 +28,53 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="1E2-E5-cvZ">
-                                <rect key="frame" x="16" y="305" width="343" height="207"/>
+                                <rect key="frame" x="16.5" y="305" width="342.5" height="287"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="M0D-PO-tEr">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="342.5" height="30"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="FFFFFF" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AOy-TH-9U9">
-                                                <rect key="frame" x="0.0" y="0.0" width="293" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="292.5" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="elw-ft-zch">
-                                                <rect key="frame" x="313" y="0.0" width="30" height="30"/>
+                                                <rect key="frame" x="312.5" y="0.0" width="30" height="30"/>
                                                 <state key="normal" title="적용"/>
                                             </button>
                                         </subviews>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="BQH-3R-tcb">
+                                        <rect key="frame" x="0.0" y="60" width="342.5" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3gH-T7-LfI">
+                                                <rect key="frame" x="0.0" y="0.0" width="81" height="50"/>
+                                                <state key="normal" title="저장"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ApC-2y-4Ld">
+                                                <rect key="frame" x="131" y="0.0" width="80.5" height="50"/>
+                                                <state key="normal" title="불러오기"/>
+                                            </button>
+                                            <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="pEc-rC-dYd">
+                                                <rect key="frame" x="261.5" y="0.0" width="81" height="50"/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="iYd-tD-ggO">
-                                        <rect key="frame" x="-2" y="60" width="347" height="30"/>
+                                        <rect key="frame" x="-2" y="140" width="346.5" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="29" id="q0h-jQ-qAn"/>
                                         </constraints>
                                     </slider>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="lGK-tF-Jcx">
-                                        <rect key="frame" x="-2" y="119" width="347" height="30"/>
+                                        <rect key="frame" x="-2" y="199" width="346.5" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="29" id="lC6-WP-SRr"/>
                                         </constraints>
                                     </slider>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="kQr-Rl-MsM">
-                                        <rect key="frame" x="-2" y="178" width="347" height="30"/>
+                                        <rect key="frame" x="-2" y="258" width="346.5" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="29" id="yh7-wh-Pwd"/>
                                         </constraints>
@@ -83,7 +99,10 @@
                         <outlet property="colorView" destination="G8T-kf-3NC" id="j3U-WK-511"/>
                         <outlet property="greenSlider" destination="lGK-tF-Jcx" id="wB0-rL-NQM"/>
                         <outlet property="hexColorTextField" destination="AOy-TH-9U9" id="nPw-EL-d9T"/>
+                        <outlet property="loadButton" destination="ApC-2y-4Ld" id="SDw-DW-Sl7"/>
                         <outlet property="redSlider" destination="iYd-tD-ggO" id="7P9-Ay-Sov"/>
+                        <outlet property="saveButton" destination="3gH-T7-LfI" id="ExL-bR-9SF"/>
+                        <outlet property="savedColorView" destination="pEc-rC-dYd" id="ftg-Oj-wI7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tgx-tt-cml" userLabel="First Responder" sceneMemberID="firstResponder"/>
