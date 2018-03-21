@@ -53,9 +53,9 @@ extension ColorViewController {
                 self?.hexColorTextField.text = colorString
             }).disposed(by: disposeBag)
         
-        applyButton.rx.tap.asObservable()
-            .map { _ -> (Int, Int, Int)? in
-                return self.hexColorTextField.text?.rgb
+        applyButton.rx.tap.asObservable().withLatestFrom(self.hexColorTextField.rx.text)
+            .map { (hexText: String?) -> (Int, Int, Int)? in
+                return hexText?.rgb
             }.filter { rgb -> Bool in
                 return rgb != nil
             }.map { $0! }.debug()
@@ -66,7 +66,6 @@ extension ColorViewController {
                 self?.greenSlider.sendActions(for: .valueChanged)
                 self?.blueSlider.rx.value.onNext(Float(blue)/255.0)
                 self?.blueSlider.sendActions(for: .valueChanged)
-                
             }).disposed(by: disposeBag)
     }
 }
