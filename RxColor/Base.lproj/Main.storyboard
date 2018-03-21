@@ -28,30 +28,33 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="1E2-E5-cvZ">
-                                <rect key="frame" x="16" y="305" width="343" height="147"/>
+                                <rect key="frame" x="16" y="305" width="343" height="207"/>
                                 <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="FFFFFF" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AOy-TH-9U9">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="iYd-tD-ggO">
-                                        <rect key="frame" x="-2" y="0.0" width="347" height="30"/>
+                                        <rect key="frame" x="-2" y="60" width="347" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="29" id="q0h-jQ-qAn"/>
                                         </constraints>
                                     </slider>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="lGK-tF-Jcx">
-                                        <rect key="frame" x="-2" y="59" width="347" height="30"/>
+                                        <rect key="frame" x="-2" y="119" width="347" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="29" id="lC6-WP-SRr"/>
                                         </constraints>
                                     </slider>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="kQr-Rl-MsM">
-                                        <rect key="frame" x="-2" y="118" width="347" height="30"/>
+                                        <rect key="frame" x="-2" y="178" width="347" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="29" id="yh7-wh-Pwd"/>
                                         </constraints>
                                     </slider>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="147" id="fxs-77-nug"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -69,6 +72,7 @@
                         <outlet property="blueSlider" destination="kQr-Rl-MsM" id="DOf-Dc-eMJ"/>
                         <outlet property="colorView" destination="G8T-kf-3NC" id="j3U-WK-511"/>
                         <outlet property="greenSlider" destination="lGK-tF-Jcx" id="wB0-rL-NQM"/>
+                        <outlet property="hexColorTextField" destination="AOy-TH-9U9" id="nPw-EL-d9T"/>
                         <outlet property="redSlider" destination="iYd-tD-ggO" id="7P9-Ay-Sov"/>
                     </connections>
                 </viewController>
