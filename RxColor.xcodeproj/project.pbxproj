@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		D7BC9EBB20627F0800115DB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BC9EBA20627F0800115DB2 /* AppDelegate.swift */; };
-		D7BC9EBD20627F0800115DB2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BC9EBC20627F0800115DB2 /* ViewController.swift */; };
 		D7BC9EC020627F0800115DB2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7BC9EBE20627F0800115DB2 /* Main.storyboard */; };
 		D7BC9EC220627F0800115DB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7BC9EC120627F0800115DB2 /* Assets.xcassets */; };
 		D7BC9EC520627F0800115DB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7BC9EC320627F0800115DB2 /* LaunchScreen.storyboard */; };
+		D7BC9ECD206289D900115DB2 /* ColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BC9ECC206289D900115DB2 /* ColorViewController.swift */; };
 		EB00FA202F7039921BBEDDA3 /* Pods_RxColor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F3D17F3EC1F4A53AB1EF776 /* Pods_RxColor.framework */; };
 /* End PBXBuildFile section */
 
@@ -21,11 +21,11 @@
 		D2CF3B35DA9DFCDDE1472AFA /* Pods-RxColor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxColor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxColor/Pods-RxColor.debug.xcconfig"; sourceTree = "<group>"; };
 		D7BC9EB720627F0800115DB2 /* RxColor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxColor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7BC9EBA20627F0800115DB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D7BC9EBC20627F0800115DB2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D7BC9EBF20627F0800115DB2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D7BC9EC120627F0800115DB2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D7BC9EC420627F0800115DB2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D7BC9EC620627F0800115DB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D7BC9ECC206289D900115DB2 /* ColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				D7BC9EBA20627F0800115DB2 /* AppDelegate.swift */,
-				D7BC9EBC20627F0800115DB2 /* ViewController.swift */,
+				D7BC9ECC206289D900115DB2 /* ColorViewController.swift */,
 				D7BC9EBE20627F0800115DB2 /* Main.storyboard */,
 				D7BC9EC120627F0800115DB2 /* Assets.xcassets */,
 				D7BC9EC320627F0800115DB2 /* LaunchScreen.storyboard */,
@@ -223,7 +223,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7BC9EBD20627F0800115DB2 /* ViewController.swift in Sources */,
+				D7BC9ECD206289D900115DB2 /* ColorViewController.swift in Sources */,
 				D7BC9EBB20627F0800115DB2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
