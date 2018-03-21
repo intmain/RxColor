@@ -17,6 +17,7 @@ class ColorViewController: UIViewController {
     @IBOutlet weak var greenSlider: UISlider!
     @IBOutlet weak var blueSlider: UISlider!
     @IBOutlet weak var hexColorTextField: UITextField!
+    @IBOutlet weak var applyButton: UIButton!
     
     var disposeBag: DisposeBag = DisposeBag()
     
@@ -33,7 +34,7 @@ extension ColorViewController {
         let color = Observable
             .combineLatest(redSlider.rx.value, greenSlider.rx.value, blueSlider.rx.value) { (redValue, greenValue, blueValue) -> UIColor in
                 UIColor(red: CGFloat(redValue), green: CGFloat(greenValue), blue: CGFloat(blueValue), alpha: 1.0)
-            }
+        }.debug("color")
         
         color
             .subscribe(onNext: { [weak self] (color: UIColor) in
@@ -51,5 +52,31 @@ extension ColorViewController {
             }.subscribe(onNext: { [weak self] (colorString: String) in
                 self?.hexColorTextField.text = colorString
             }).disposed(by: disposeBag)
+        
+        applyButton.rx.tap.asObservable()
+            .map { _ -> (Int, Int, Int)? in
+                return self.hexColorTextField.text?.rgb
+            }.filter { rgb -> Bool in
+                return rgb != nil
+            }.map { $0! }.debug()
+            .subscribe(onNext: { [weak self] (red,green,blue) in
+                self?.redSlider.rx.value.onNext(Float(red)/255.0)
+                self?.redSlider.sendActions(for: .valueChanged)
+                self?.greenSlider.rx.value.onNext(Float(green)/255.0)
+                self?.greenSlider.sendActions(for: .valueChanged)
+                self?.blueSlider.rx.value.onNext(Float(blue)/255.0)
+                self?.blueSlider.sendActions(for: .valueChanged)
+                
+            }).disposed(by: disposeBag)
+    }
+}
+
+extension String {
+    var rgb: (Int, Int, Int)? {
+        guard let number: Int = Int(self, radix: 16) else { return nil }
+        let blue = number & 0x0000ff
+        let green = (number & 0x00ff00) >> 8
+        let red = (number & 0xff0000) >> 16
+        return (red, green, blue)
     }
 }

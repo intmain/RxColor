@@ -30,12 +30,21 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="1E2-E5-cvZ">
                                 <rect key="frame" x="16" y="305" width="343" height="207"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="FFFFFF" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AOy-TH-9U9">
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="M0D-PO-tEr">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="FFFFFF" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AOy-TH-9U9">
+                                                <rect key="frame" x="0.0" y="0.0" width="293" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="elw-ft-zch">
+                                                <rect key="frame" x="313" y="0.0" width="30" height="30"/>
+                                                <state key="normal" title="적용"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="iYd-tD-ggO">
                                         <rect key="frame" x="-2" y="60" width="347" height="30"/>
                                         <constraints>
@@ -69,6 +78,7 @@
                         <viewLayoutGuide key="safeArea" id="Sdc-Go-hWR"/>
                     </view>
                     <connections>
+                        <outlet property="applyButton" destination="elw-ft-zch" id="OWQ-xK-K5d"/>
                         <outlet property="blueSlider" destination="kQr-Rl-MsM" id="DOf-Dc-eMJ"/>
                         <outlet property="colorView" destination="G8T-kf-3NC" id="j3U-WK-511"/>
                         <outlet property="greenSlider" destination="lGK-tF-Jcx" id="wB0-rL-NQM"/>
