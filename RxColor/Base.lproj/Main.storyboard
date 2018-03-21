@@ -27,27 +27,49 @@
                                     <constraint firstAttribute="width" secondItem="G8T-kf-3NC" secondAttribute="height" multiplier="1:1" id="uLE-PP-pdy"/>
                                 </constraints>
                             </view>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="iYd-tD-ggO">
-                                <rect key="frame" x="14" y="302" width="347" height="30"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="1E2-E5-cvZ">
+                                <rect key="frame" x="16" y="305" width="343" height="147"/>
+                                <subviews>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="iYd-tD-ggO">
+                                        <rect key="frame" x="-2" y="0.0" width="347" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="29" id="q0h-jQ-qAn"/>
+                                        </constraints>
+                                    </slider>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="lGK-tF-Jcx">
+                                        <rect key="frame" x="-2" y="59" width="347" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="29" id="lC6-WP-SRr"/>
+                                        </constraints>
+                                    </slider>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="kQr-Rl-MsM">
+                                        <rect key="frame" x="-2" y="118" width="347" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="29" id="yh7-wh-Pwd"/>
+                                        </constraints>
+                                    </slider>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="29" id="q0h-jQ-qAn"/>
+                                    <constraint firstAttribute="height" constant="147" id="fxs-77-nug"/>
                                 </constraints>
-                            </slider>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="G8T-kf-3NC" firstAttribute="top" secondItem="Sdc-Go-hWR" secondAttribute="top" constant="14" id="1nH-jS-vmu"/>
-                            <constraint firstItem="iYd-tD-ggO" firstAttribute="top" secondItem="G8T-kf-3NC" secondAttribute="bottom" constant="43" id="4qb-ax-crv"/>
+                            <constraint firstItem="1E2-E5-cvZ" firstAttribute="top" secondItem="G8T-kf-3NC" secondAttribute="bottom" constant="46" id="90D-Br-2SH"/>
+                            <constraint firstItem="Sdc-Go-hWR" firstAttribute="trailing" secondItem="1E2-E5-cvZ" secondAttribute="trailing" constant="16" id="B9L-0X-OP9"/>
                             <constraint firstItem="G8T-kf-3NC" firstAttribute="centerX" secondItem="Sdc-Go-hWR" secondAttribute="centerX" id="Hzj-UO-S8I"/>
                             <constraint firstItem="G8T-kf-3NC" firstAttribute="width" secondItem="AJM-ue-uhj" secondAttribute="width" multiplier="0.6" id="IVV-eE-cYk"/>
-                            <constraint firstItem="iYd-tD-ggO" firstAttribute="leading" secondItem="Sdc-Go-hWR" secondAttribute="leading" constant="16" id="of1-j4-sV6"/>
-                            <constraint firstItem="Sdc-Go-hWR" firstAttribute="trailing" secondItem="iYd-tD-ggO" secondAttribute="trailing" constant="16" id="yT4-Lg-6Iu"/>
+                            <constraint firstItem="1E2-E5-cvZ" firstAttribute="leading" secondItem="Sdc-Go-hWR" secondAttribute="leading" constant="16" id="O7U-pb-N8L"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Sdc-Go-hWR"/>
                     </view>
                     <connections>
+                        <outlet property="blueSlider" destination="kQr-Rl-MsM" id="DOf-Dc-eMJ"/>
                         <outlet property="colorView" destination="G8T-kf-3NC" id="j3U-WK-511"/>
-                        <outlet property="graySlider" destination="iYd-tD-ggO" id="PaW-pj-VLO"/>
+                        <outlet property="greenSlider" destination="lGK-tF-Jcx" id="wB0-rL-NQM"/>
+                        <outlet property="redSlider" destination="iYd-tD-ggO" id="7P9-Ay-Sov"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tgx-tt-cml" userLabel="First Responder" sceneMemberID="firstResponder"/>
