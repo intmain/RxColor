@@ -67,9 +67,11 @@ extension ColorViewController {
                 self?.view.endEditing(true)
             }).disposed(by: disposeBag)
         
-        saveButton.rx.tap.asObservable()
-            .flatMap {  _ -> Observable<UIColor> in
-                let color: UIColor = self.colorView.backgroundColor!
+        
+        
+        
+        saveButton.rx.tap.asObservable().withLatestFrom(colorView.rx.observe(UIColor.self, "backgroundColor")).map { $0! }
+            .flatMap { (color: UIColor) -> Observable<UIColor> in
                 return ColorArchiveAPI.instance.save(color: color)
             }.subscribe(onNext: { [weak self] (saveColor: UIColor) in
                 self?.savedColorView.backgroundColor = saveColor
