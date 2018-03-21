@@ -67,23 +67,21 @@ extension ColorViewController {
                 self?.view.endEditing(true)
             }).disposed(by: disposeBag)
         
-        saveButton.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                guard let `self` = self else { return }
-                guard let color = self.colorView.backgroundColor else { return }
-                ColorArchiveAPI.instance.save(color: color).subscribe(onNext: { (saveColor: UIColor) in
-                    self.savedColorView.backgroundColor = saveColor
-                }).disposed(by: self.disposeBag)
+        saveButton.rx.tap.asObservable()
+            .flatMap {  _ -> Observable<UIColor> in
+                let color: UIColor = self.colorView.backgroundColor!
+                return ColorArchiveAPI.instance.save(color: color)
+            }.subscribe(onNext: { [weak self] (saveColor: UIColor) in
+                self?.savedColorView.backgroundColor = saveColor
             }).disposed(by: disposeBag)
         
-        loadButton.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                guard let `self` = self else { return }
-                ColorArchiveAPI.instance.load().debug("load").subscribe(onNext: { (savedColor) in
-                    self.hexColorTextField.rx.text.onNext(savedColor.hexString)
-                    self.hexColorTextField.sendActions(for: .valueChanged)
-                    self.applyButton.sendActions(for: .touchUpInside)
-                }).disposed(by: self.disposeBag)
+        loadButton.rx.tap.asObservable()
+            .flatMap {  _ -> Observable<UIColor> in
+                return ColorArchiveAPI.instance.load()
+            }.subscribe(onNext: { [weak self] (savedColor) in
+                self?.hexColorTextField.rx.text.onNext(savedColor.hexString)
+                self?.hexColorTextField.sendActions(for: .valueChanged)
+                self?.applyButton.sendActions(for: .touchUpInside)
             }).disposed(by: disposeBag)
     }
 }
