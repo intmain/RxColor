@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
+import RxSwiftExt
 
 class SelectedColorViewController: UIViewController {
     
@@ -61,9 +62,23 @@ extension SelectedColorViewController {
         
         reverseButton.rx.tap.subscribe(onNext: { [weak self] _ in
             guard let `self` = self else { return }
-            var colors = (try? self.colors.value()) ?? []
+            let colors = (try? self.colors.value()) ?? []
             self.colors.onNext(colors.reversed())
         }).disposed(by: disposeBag)
+        
+        collectionView.rx.contentOffset.pairwise().map { (point1, point2) -> Bool in
+            let gap = point1.y - point2.y
+            return gap > 0
+            }.distinctUntilChanged()
+            .subscribe(onNext: {[weak self] (direction: Bool) in
+                guard let `self` = self else { return }
+                self.collectionView.backgroundColor = UIColor.white
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.collectionView.backgroundColor = UIColor.orange
+                }, completion: { (completion) in
+                    self.collectionView.backgroundColor = UIColor.white
+                })
+            }).disposed(by: disposeBag)
     }
 }
 

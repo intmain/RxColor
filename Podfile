@@ -8,4 +8,5 @@ target 'RxColor' do
     pod 'RxSwift'
     pod 'RxCocoa'
     pod 'RxDataSources'
+    pod 'RxSwiftExt'
 end
