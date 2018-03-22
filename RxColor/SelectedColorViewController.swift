@@ -15,6 +15,7 @@ class SelectedColorViewController: UIViewController {
     
     @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var reverseButton: UIBarButtonItem!
     var disposeBag = DisposeBag()
     var colors: BehaviorSubject<[UIColor]> = BehaviorSubject(value: [UIColor.yellow, UIColor.cyan, UIColor.magenta])
     
@@ -57,6 +58,12 @@ extension SelectedColorViewController {
                 colors.remove(at: item)
                 self.colors.onNext(colors)
             }).disposed(by: disposeBag)
+        
+        reverseButton.rx.tap.subscribe(onNext: { [weak self] _ in
+            guard let `self` = self else { return }
+            var colors = (try? self.colors.value()) ?? []
+            self.colors.onNext(colors.reversed())
+        }).disposed(by: disposeBag)
     }
 }
 

@@ -67,11 +67,13 @@
                         <viewLayoutGuide key="safeArea" id="2Od-Hd-tKZ"/>
                     </view>
                     <navigationItem key="navigationItem" id="mZ8-81-tT5">
+                        <barButtonItem key="leftBarButtonItem" title="Reverce" id="mqB-tI-gaX"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Am1-BZ-08d"/>
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="Am1-BZ-08d" id="ytW-fK-72V"/>
                         <outlet property="collectionView" destination="azf-nL-aWE" id="lpK-FR-Lys"/>
+                        <outlet property="reverseButton" destination="mqB-tI-gaX" id="6vo-sA-z8l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hFm-ie-fWh" userLabel="First Responder" sceneMemberID="firstResponder"/>
