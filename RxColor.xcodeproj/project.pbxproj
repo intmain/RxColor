@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D71DE0632062D5D3003EB594 /* SelectedColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71DE0622062D5D3003EB594 /* SelectedColorViewController.swift */; };
 		D7BC9EBB20627F0800115DB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BC9EBA20627F0800115DB2 /* AppDelegate.swift */; };
 		D7BC9EC020627F0800115DB2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7BC9EBE20627F0800115DB2 /* Main.storyboard */; };
 		D7BC9EC220627F0800115DB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7BC9EC120627F0800115DB2 /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 		1F3D17F3EC1F4A53AB1EF776 /* Pods_RxColor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxColor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5094690F86A02F4ADA5AF800 /* Pods-RxColor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxColor.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxColor/Pods-RxColor.release.xcconfig"; sourceTree = "<group>"; };
 		D2CF3B35DA9DFCDDE1472AFA /* Pods-RxColor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxColor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxColor/Pods-RxColor.debug.xcconfig"; sourceTree = "<group>"; };
+		D71DE0622062D5D3003EB594 /* SelectedColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedColorViewController.swift; sourceTree = "<group>"; };
 		D7BC9EB720627F0800115DB2 /* RxColor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxColor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7BC9EBA20627F0800115DB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7BC9EBF20627F0800115DB2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 			children = (
 				D7BC9EBA20627F0800115DB2 /* AppDelegate.swift */,
 				D7BC9ECC206289D900115DB2 /* ColorViewController.swift */,
+				D71DE0622062D5D3003EB594 /* SelectedColorViewController.swift */,
 				D7BC9EBE20627F0800115DB2 /* Main.storyboard */,
 				D7BC9EC120627F0800115DB2 /* Assets.xcassets */,
 				D7BC9EC320627F0800115DB2 /* LaunchScreen.storyboard */,
@@ -223,6 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D71DE0632062D5D3003EB594 /* SelectedColorViewController.swift in Sources */,
 				D7BC9ECD206289D900115DB2 /* ColorViewController.swift in Sources */,
 				D7BC9EBB20627F0800115DB2 /* AppDelegate.swift in Sources */,
 			);

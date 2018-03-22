@@ -21,7 +21,8 @@ class ColorViewController: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var loadButton: UIButton!
     @IBOutlet weak var savedColorView: UIView!
-    
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var doneButton: UIBarButtonItem!
     var disposeBag: DisposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -33,11 +34,10 @@ class ColorViewController: UIViewController {
 
 extension ColorViewController {
     func bind() {
-        
         let color = Observable
             .combineLatest(redSlider.rx.value, greenSlider.rx.value, blueSlider.rx.value) { (redValue, greenValue, blueValue) -> UIColor in
                 UIColor(red: CGFloat(redValue), green: CGFloat(greenValue), blue: CGFloat(blueValue), alpha: 1.0)
-        }.debug("color")
+        }
         
         color
             .subscribe(onNext: { [weak self] (color: UIColor) in
@@ -51,12 +51,12 @@ extension ColorViewController {
                 self?.hexColorTextField.text = colorString
             }).disposed(by: disposeBag)
         
-        applyButton.rx.tap.asObservable().withLatestFrom(self.hexColorTextField.rx.text).debug("apply")
+        applyButton.rx.tap.asObservable().withLatestFrom(self.hexColorTextField.rx.text)
             .map { (hexText: String?) -> (Int, Int, Int)? in
                 return hexText?.rgb
             }.filter { rgb -> Bool in
                 return rgb != nil
-            }.map { $0! }.debug()
+            }.map { $0! }
             .subscribe(onNext: { [weak self] (red,green,blue) in
                 self?.redSlider.rx.value.onNext(Float(red)/255.0)
                 self?.redSlider.sendActions(for: .valueChanged)
@@ -66,10 +66,7 @@ extension ColorViewController {
                 self?.blueSlider.sendActions(for: .valueChanged)
                 self?.view.endEditing(true)
             }).disposed(by: disposeBag)
-        
-        
-        
-        
+
         saveButton.rx.tap.asObservable().withLatestFrom(colorView.rx.observe(UIColor.self, "backgroundColor")).map { $0! }
             .flatMap { (color: UIColor) -> Observable<UIColor> in
                 return ColorArchiveAPI.instance.save(color: color)
@@ -85,6 +82,34 @@ extension ColorViewController {
                 self?.hexColorTextField.sendActions(for: .valueChanged)
                 self?.applyButton.sendActions(for: .touchUpInside)
             }).disposed(by: disposeBag)
+        
+        ColorArchiveAPI.instance.load()
+            .subscribe(onNext: { [weak self] color in
+                self?.savedColorView.backgroundColor = color
+            }).disposed(by: disposeBag)
+    }
+}
+
+extension Reactive where Base: ColorViewController {
+    static func create(parent: UIViewController?, animated: Bool = true) -> Observable<ColorViewController> {
+        return Observable.create({ [weak parent] (observer) -> Disposable in
+            let colorViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ColorViewController") as! ColorViewController
+            let dismissDisposable = colorViewController.cancelButton.rx.tap.subscribe(onNext: { [weak colorViewController] _ in
+                guard let colorViewController = colorViewController else { return }
+                colorViewController.dismiss(animated: true, completion: nil)
+            })
+            let naviController = UINavigationController(rootViewController: colorViewController)
+            parent?.present(naviController, animated: animated, completion: {
+                observer.onNext(colorViewController)
+            })
+            
+            return Disposables.create(dismissDisposable, Disposables.create {
+                colorViewController.dismiss(animated: animated, completion: nil)
+            })
+        })
+    }
+    var selectedColor: Observable<UIColor> {
+        return base.doneButton.rx.tap.withLatestFrom(base.colorView.rx.observe(UIColor.self,  "backgroundColor")).map { $0! }
     }
 }
 

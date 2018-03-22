@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="266-Wn-Ccq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QrT-Is-LXH">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -12,23 +12,76 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Color View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="zp4-ZC-u8T">
+            <objects>
+                <navigationController id="QrT-Is-LXH" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="P9M-9Y-UFN">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="y11-bu-AHQ" kind="relationship" relationship="rootViewController" id="52t-8W-QD6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ogH-cw-EHQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-596" y="-574"/>
+        </scene>
+        <!--Selected Color View Controller-->
+        <scene sceneID="mee-QS-zXJ">
+            <objects>
+                <viewController id="y11-bu-AHQ" customClass="SelectedColorViewController" customModule="RxColor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zLf-W8-VV4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="2Od-Hd-tKZ"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="mZ8-81-tT5">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Am1-BZ-08d"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="addButton" destination="Am1-BZ-08d" id="ytW-fK-72V"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hFm-ie-fWh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="222" y="-574"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="0dL-7V-3Zp">
+            <objects>
+                <navigationController id="zOp-H2-b1e" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4sr-9s-AlU">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="266-Wn-Ccq" kind="relationship" relationship="rootViewController" id="MLH-a0-QHr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LCk-Wc-NEb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-567" y="125"/>
+        </scene>
+        <!--ColorPicker-->
         <scene sceneID="Zhn-KZ-J0w">
             <objects>
-                <viewController id="266-Wn-Ccq" customClass="ColorViewController" customModule="RxColor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ColorViewController" id="266-Wn-Ccq" customClass="ColorViewController" customModule="RxColor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AJM-ue-uhj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G8T-kf-3NC">
-                                <rect key="frame" x="75" y="34" width="225" height="225"/>
+                                <rect key="frame" x="75" y="78" width="225" height="225"/>
                                 <color key="backgroundColor" red="0.91372549020000005" green="0.3294117647" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="G8T-kf-3NC" secondAttribute="height" multiplier="1:1" id="uLE-PP-pdy"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="1E2-E5-cvZ">
-                                <rect key="frame" x="16.5" y="305" width="342.5" height="287"/>
+                                <rect key="frame" x="16.5" y="349" width="342.5" height="287"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="M0D-PO-tEr">
                                         <rect key="frame" x="0.0" y="0.0" width="342.5" height="30"/>
@@ -93,10 +146,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Sdc-Go-hWR"/>
                     </view>
+                    <navigationItem key="navigationItem" title="ColorPicker" id="hVm-fE-Xut">
+                        <barButtonItem key="leftBarButtonItem" title="cancel" id="6Ue-Bs-CYe"/>
+                        <barButtonItem key="rightBarButtonItem" title="done" id="tBd-if-kgn"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="applyButton" destination="elw-ft-zch" id="OWQ-xK-K5d"/>
                         <outlet property="blueSlider" destination="kQr-Rl-MsM" id="DOf-Dc-eMJ"/>
+                        <outlet property="cancelButton" destination="6Ue-Bs-CYe" id="6UF-7W-x8V"/>
                         <outlet property="colorView" destination="G8T-kf-3NC" id="j3U-WK-511"/>
+                        <outlet property="doneButton" destination="tBd-if-kgn" id="g3t-R9-Zgt"/>
                         <outlet property="greenSlider" destination="lGK-tF-Jcx" id="wB0-rL-NQM"/>
                         <outlet property="hexColorTextField" destination="AOy-TH-9U9" id="nPw-EL-d9T"/>
                         <outlet property="loadButton" destination="ApC-2y-4Ld" id="SDw-DW-Sl7"/>
