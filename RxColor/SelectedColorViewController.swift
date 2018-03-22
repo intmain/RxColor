@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxDataSources
 
 class SelectedColorViewController: UIViewController {
     
@@ -35,9 +36,18 @@ extension SelectedColorViewController {
                 self.colors.onNext(colors)
             }).disposed(by: disposeBag)
         
-        colors.asObservable().bind(to: collectionView.rx.items(cellIdentifier: "ColorCell", cellType: UICollectionViewCell.self)) { (index, color, cell) in
+        typealias Section = AnimatableSectionModel<String, UIColor>
+        let datasource: RxCollectionViewSectionedAnimatedDataSource<Section> = RxCollectionViewSectionedAnimatedDataSource(configureCell: { (datasource, collectionView, indexPath, color) -> UICollectionViewCell in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ColorCell", for: indexPath)
             cell.contentView.backgroundColor = color
-            }.disposed(by: disposeBag)
+            return cell
+        }, configureSupplementaryView: { (datasource, collectionView, string, indexPath) -> UICollectionReusableView in
+            return collectionView.dequeueReusableSupplementaryView(ofKind: string, withReuseIdentifier: "a", for: indexPath)
+        })
+        
+        colors.map { [Section(model: "", items: $0)] }
+            .bind(to: collectionView.rx.items(dataSource: datasource) )
+            .disposed(by:disposeBag)
         
         collectionView.rx.itemSelected
             .subscribe(onNext: { [weak self] indexPath in
@@ -47,5 +57,11 @@ extension SelectedColorViewController {
                 colors.remove(at: item)
                 self.colors.onNext(colors)
             }).disposed(by: disposeBag)
+    }
+}
+
+extension UIColor: IdentifiableType  {
+    public var identity : Int {
+        return self.cgColor.hashValue
     }
 }
