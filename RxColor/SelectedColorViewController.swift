@@ -22,6 +22,7 @@ class SelectedColorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.refreshControl = UIRefreshControl()
         bind()
     }
 }
@@ -79,6 +80,17 @@ extension SelectedColorViewController {
                     self.collectionView.backgroundColor = UIColor.white
                 })
             }).disposed(by: disposeBag)
+        
+        collectionView.refreshControl?.rx
+            .controlEvent(UIControlEvents.valueChanged)
+            .subscribe(onNext: { [weak self] _ in
+                guard let `self` = self else { return }
+                let colors = (try? self.colors.value()) ?? []
+                self.colors.onNext(colors.reversed())
+                self.collectionView.refreshControl?.endRefreshing()
+            }).disposed(by: disposeBag)
+            
+        
     }
 }
 
